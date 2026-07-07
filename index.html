@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📡 Price Watch</title>
+  <style>
+    :root {
+      --bg: #0f0f17;
+      --card: #1a1a2e;
+      --border: #2a2a3e;
+      --gold: #f0c040;
+      --green: #28a745;
+      --red: #e94560;
+      --text: #e8e8f0;
+      --muted: #888;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+
+    header { background: var(--card); border-bottom: 2px solid var(--gold); padding: 20px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    header h1 { font-size: 1.4rem; color: var(--gold); }
+    header p { color: var(--muted); font-size: 0.85rem; }
+    .last-updated { margin-left: auto; color: var(--muted); font-size: 0.8rem; text-align: right; }
+
+    main { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+
+    .monitor-section { margin-bottom: 48px; }
+    .monitor-section h2 { font-size: 1.2rem; color: var(--gold); margin-bottom: 6px; }
+    .monitor-section .desc { color: var(--muted); font-size: 0.85rem; margin-bottom: 20px; }
+
+    .items-grid { display: grid; gap: 16px; }
+
+    .item-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: start;
+      transition: border-color 0.2s;
+    }
+    .item-card:hover { border-color: var(--gold); }
+    .item-card.drop { border-color: var(--green); }
+
+    .item-name { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .item-spec { color: var(--muted); font-size: 0.8rem; margin-bottom: 8px; }
+    .item-store { font-size: 0.8rem; color: var(--muted); }
+    .item-store a { color: var(--gold); text-decoration: none; }
+    .item-store a:hover { text-decoration: underline; }
+
+    .item-price-block { text-align: right; }
+    .item-price { font-size: 1.5rem; font-weight: 900; color: var(--gold); white-space: nowrap; }
+    .item-price.drop { color: var(--green); }
+    .item-change { font-size: 0.78rem; margin-top: 4px; white-space: nowrap; }
+    .item-change.same { color: var(--muted); }
+    .item-change.down { color: var(--green); font-weight: 700; }
+    .item-change.up { color: var(--red); }
+    .item-checked { font-size: 0.72rem; color: var(--muted); margin-top: 6px; }
+
+    .alert-banner {
+      background: rgba(40,167,69,0.12);
+      border: 2px solid var(--green);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 28px;
+      font-size: 0.9rem;
+      color: var(--green);
+      display: none;
+    }
+    .alert-banner.visible { display: block; }
+
+    footer { text-align: center; color: var(--muted); font-size: 0.78rem; padding: 32px 20px; border-top: 1px solid var(--border); }
+
+    @media (max-width: 500px) {
+      .item-card { grid-template-columns: 1fr; }
+      .item-price-block { text-align: left; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>📡 Price Watch</h1>
+      <p>Automated deal monitoring — updated by Bob</p>
+    </div>
+    <div class="last-updated" id="last-updated">Loading...</div>
+  </header>
+
+  <main id="main">
+    <p style="color:var(--muted); text-align:center; padding:40px;">Loading monitors...</p>
+  </main>
+
+  <footer>
+    Monitored automatically · Prices in CAD · Always verify before purchasing
+  </footer>
+
+  <script>
+    async function load() {
+      const res = await fetch('./data/monitors.json?t=' + Date.now());
+      const data = await res.json();
+
+      document.getElementById('last-updated').innerHTML =
+        '🕐 Last updated<br>' + formatDate(data.last_updated);
+
+      const main = document.getElementById('main');
+      main.innerHTML = '';
+
+      let hasDrops = false;
+
+      data.monitors.forEach(monitor => {
+        const section = document.createElement('div');
+        section.className = 'monitor-section';
+
+        const drops = monitor.items.filter(i => getChange(i) < -49);
+        if (drops.length) hasDrops = true;
+
+        section.innerHTML = `
+          <h2>${monitor.title}</h2>
+          <p class="desc">${monitor.description}</p>
+          ${drops.length ? `<div class="alert-banner visible">🚨 Price drop detected on ${drops.map(d=>d.name).join(', ')}!</div>` : ''}
+          <div class="items-grid">${monitor.items.map(itemHTML).join('')}</div>
+        `;
+        main.appendChild(section);
+      });
+    }
+
+    function getChange(item) {
+      if (!item.history || item.history.length < 2) return 0;
+      const prev = item.history[item.history.length - 2].price;
+      return item.price - prev;
+    }
+
+    function itemHTML(item) {
+      const change = getChange(item);
+      const changeCls = change < -49 ? 'down' : change > 49 ? 'up' : 'same';
+      const changeLabel = change === 0 ? 'No change'
+        : change < 0 ? `▼ $${Math.abs(change)} drop!`
+        : `▲ $${change} increase`;
+      const isDrop = change < -49;
+
+      return `
+        <div class="item-card${isDrop ? ' drop' : ''}">
+          <div>
+            <div class="item-name">${item.name}</div>
+            <div class="item-spec">${item.spec}</div>
+            <div class="item-store">
+              ${item.store} ·
+              <a href="${item.url}" target="_blank" rel="noopener">View listing ↗</a>
+            </div>
+          </div>
+          <div class="item-price-block">
+            <div class="item-price${isDrop ? ' drop' : ''}">$${item.price.toLocaleString()}</div>
+            <div class="item-change ${changeCls}">${changeLabel}</div>
+            <div class="item-checked">Checked ${item.last_checked}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function formatDate(str) {
+      if (!str) return '—';
+      const d = new Date(str);
+      return d.toLocaleDateString('en-CA', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    load().catch(e => {
+      document.getElementById('main').innerHTML =
+        '<p style="color:var(--red);text-align:center;padding:40px;">Failed to load data. Try refreshing.</p>';
+    });
+  </script>
+</body>
+</html>
