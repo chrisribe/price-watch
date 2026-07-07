@@ -149,6 +149,7 @@
             <div class="item-store">
               ${item.store} ·
               <a href="${item.url}" target="_blank" rel="noopener">View listing ↗</a>
+              ${'numpad' in item ? `· <span title="Numpad">${item.numpad ? '⌨️ Numpad' : '✗ No numpad'}</span>` : ''}
             </div>
           </div>
           <div class="item-price-block">
