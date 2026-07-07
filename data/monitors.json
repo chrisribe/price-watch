@@ -51,7 +51,7 @@
           "name": "Lenovo Legion 5 15.3\" 16GB",
           "spec": "AMD Ryzen 7 260 · RTX 5060 · 16GB · 1TB · Win11H",
           "store": "Canada Computers",
-          "numpad": true,
+          "numpad": false,
           "price": 1999,
           "currency": "CAD",
           "last_checked": "2026-07-07",
