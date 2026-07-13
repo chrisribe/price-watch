@@ -1,14 +1,14 @@
 {
-  "last_updated": "2026-07-09T13:03:04",
+  "last_updated": "2026-07-13T09:02:31",
   "monitors": [
     {
       "id": "laptops",
-      "title": "\ud83d\udcbb Laptops",
+      "title": "💻 Laptops",
       "description": "Gaming/work laptops for architecture student (Revit + Enscape). Checked Mon & Thu.",
       "items": [
         {
           "name": "Lenovo Legion 5i 15.1\" 32GB",
-          "spec": "Intel i7-14700HX \u00b7 RTX 5070 \u00b7 32GB \u00b7 1TB \u00b7 WQXGA",
+          "spec": "Intel i7-14700HX · RTX 5070 · 32GB · 1TB · WQXGA",
           "store": "Newegg CA",
           "numpad": true,
           "price": 2299,
@@ -24,12 +24,12 @@
         },
         {
           "name": "Gigabyte A16 32GB",
-          "spec": "Intel i7-13620H \u00b7 RTX 5060 \u00b7 32GB \u00b7 1TB \u00b7 Win11H",
+          "spec": "Intel i7-13620H · RTX 5060 · 32GB · 1TB · Win11H",
           "store": "Canada Computers",
           "numpad": true,
-          "price": 1699,
+          "price": 2499,
           "currency": "CAD",
-          "last_checked": "2026-07-09",
+          "last_checked": "2026-07-13",
           "url": "https://www.canadacomputers.com/en/gaming-laptops/275497/gigabyte-a16-16-intel-i7-13620h-geforce-rtx-5060-32gb-1tb-win11h-gaming-a16-cvhi3us864sh.html",
           "history": [
             {
@@ -43,17 +43,21 @@
             {
               "date": "2026-07-09",
               "price": 1699
+            },
+            {
+              "date": "2026-07-13",
+              "price": 2499
             }
           ]
         },
         {
           "name": "MSI Stealth A16 AI+ 32GB",
-          "spec": "AMD Ryzen AI 9 365 \u00b7 RTX 4070 \u00b7 32GB \u00b7 1TB \u00b7 Win11H",
+          "spec": "AMD Ryzen AI 9 365 · RTX 4070 · 32GB · 1TB · Win11H",
           "store": "Best Buy CA",
           "numpad": false,
-          "price": 2199,
+          "price": 2799,
           "currency": "CAD",
-          "last_checked": "2026-07-09",
+          "last_checked": "2026-07-13",
           "url": "https://www.bestbuy.ca/en-ca/product/msi-stealth-a16-ai-16-gaming-laptop-core-black-amd-ryzen-ai-9-365-32gb-ram-1tb-ssd-geforce-rtx-4070-win-11-home/19656925",
           "history": [
             {
@@ -67,17 +71,21 @@
             {
               "date": "2026-07-09",
               "price": 2199
+            },
+            {
+              "date": "2026-07-13",
+              "price": 2799
             }
           ]
         },
         {
           "name": "Lenovo Legion 5 15.3\" 16GB",
-          "spec": "AMD Ryzen 7 260 \u00b7 RTX 5060 \u00b7 16GB \u00b7 1TB \u00b7 Win11H",
+          "spec": "AMD Ryzen 7 260 · RTX 5060 · 16GB · 1TB · Win11H",
           "store": "Canada Computers",
           "numpad": false,
           "price": 1999,
           "currency": "CAD",
-          "last_checked": "2026-07-09",
+          "last_checked": "2026-07-13",
           "url": "https://www.canadacomputers.com/en/gaming-laptops/278827/lenovo-legion-5-15-3-amd-ryzen-7-260-geforce-rtx-5060-16gb-1tb-win11h-83m0004vcc.html",
           "history": [
             {
@@ -91,12 +99,16 @@
             {
               "date": "2026-07-09",
               "price": 1999
+            },
+            {
+              "date": "2026-07-13",
+              "price": 1999
             }
           ]
         },
         {
           "name": "MSI Katana 15 16GB",
-          "spec": "Intel i7-14650HX \u00b7 RTX 5050 \u00b7 16GB \u00b7 512GB \u00b7 FHD",
+          "spec": "Intel i7-14650HX · RTX 5050 · 16GB · 512GB · FHD",
           "store": "Newegg CA",
           "numpad": true,
           "price": 1769,
