@@ -50,6 +50,17 @@
     .item-store { font-size: 0.8rem; color: var(--muted); }
     .item-store a { color: var(--gold); text-decoration: none; }
     .item-store a:hover { text-decoration: underline; }
+    .stock-badge {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+    .stock-badge.out { background: rgba(255,76,76,0.15); color: #ff9e9e; border-color: #ff6b6b; }
+    .stock-badge.in { background: rgba(64,192,96,0.15); color: #aaffc2; border-color: #41d67a; }
 
     .item-price-block { text-align: right; }
     .item-price { font-size: 1.5rem; font-weight: 900; color: var(--gold); white-space: nowrap; }
@@ -114,14 +125,15 @@
         const section = document.createElement('div');
         section.className = 'monitor-section';
 
-        const drops = monitor.items.filter(i => getChange(i) < -49);
+        const sortedItems = [...monitor.items].sort((a, b) => (Number(a.price) || 0) - (Number(b.price) || 0));
+        const drops = sortedItems.filter(i => getChange(i) < -49);
         if (drops.length) hasDrops = true;
 
         section.innerHTML = `
           <h2>${monitor.title}</h2>
           <p class="desc">${monitor.description}</p>
           ${drops.length ? `<div class="alert-banner visible">🚨 Price drop detected on ${drops.map(d=>d.name).join(', ')}!</div>` : ''}
-          <div class="items-grid">${monitor.items.map(itemHTML).join('')}</div>
+          <div class="items-grid">${sortedItems.map(itemHTML).join('')}</div>
         `;
         main.appendChild(section);
       });
@@ -151,6 +163,7 @@
               <a href="${item.url}" target="_blank" rel="noopener">View listing ↗</a>
               ${'numpad' in item ? `· <span title="Numpad">${item.numpad ? '⌨️ Numpad' : '✗ No numpad'}</span>` : ''}
             </div>
+            ${stockBadgeHTML(item)}
           </div>
           <div class="item-price-block">
             <div class="item-price${isDrop ? ' drop' : ''}">$${item.price.toLocaleString()}</div>
@@ -159,6 +172,16 @@
           </div>
         </div>
       `;
+    }
+
+    function stockBadgeHTML(item) {
+      const status = String(item.stock_status || '').toLowerCase();
+      const notes = String(item.notes || '').toLowerCase();
+      const isOut = status.includes('out') || notes.includes('sold out');
+      const isIn = status.includes('in_stock') || status === 'in stock';
+      if (isOut) return `<div class="stock-badge out">Sold out online</div>`;
+      if (isIn) return `<div class="stock-badge in">In stock</div>`;
+      return '';
     }
 
     function formatDate(str) {

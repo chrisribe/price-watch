@@ -149,7 +149,8 @@
               "price": 1599.99
             }
           ],
-          "notes": "Numpad confirmed by user; sold out online at time added."
+          "notes": "Numpad confirmed by user; sold out online at time added.",
+          "stock_status": "out_of_stock_online"
         }
       ]
     }
