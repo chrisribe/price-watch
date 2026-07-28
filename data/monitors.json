@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28T13:46:47",
+  "last_updated": "2026-07-28T14:16:07",
   "monitors": [
     {
       "id": "laptops",
@@ -27,9 +27,9 @@
           "spec": "Intel i7-13620H · RTX 5060 · 32GB · 1TB · Win11H",
           "store": "Canada Computers",
           "numpad": true,
-          "price": 2499,
+          "price": 1799,
           "currency": "CAD",
-          "last_checked": "2026-07-16",
+          "last_checked": "2026-07-28",
           "url": "https://www.canadacomputers.com/en/gaming-laptops/275497/gigabyte-a16-16-intel-i7-13620h-geforce-rtx-5060-32gb-1tb-win11h-gaming-a16-cvhi3us864sh.html",
           "history": [
             {
@@ -51,6 +51,10 @@
             {
               "date": "2026-07-16",
               "price": 2499
+            },
+            {
+              "date": "2026-07-28",
+              "price": 1799
             }
           ]
         },
@@ -59,9 +63,9 @@
           "spec": "AMD Ryzen AI 9 365 · RTX 4070 · 32GB · 1TB · Win11H",
           "store": "Best Buy CA",
           "numpad": false,
-          "price": 2799,
+          "price": 2800,
           "currency": "CAD",
-          "last_checked": "2026-07-16",
+          "last_checked": "2026-07-28",
           "url": "https://www.bestbuy.ca/en-ca/product/msi-stealth-a16-ai-16-gaming-laptop-core-black-amd-ryzen-ai-9-365-32gb-ram-1tb-ssd-geforce-rtx-4070-win-11-home/19656925",
           "history": [
             {
@@ -83,6 +87,10 @@
             {
               "date": "2026-07-16",
               "price": 2799
+            },
+            {
+              "date": "2026-07-28",
+              "price": 2800
             }
           ]
         },
@@ -91,9 +99,9 @@
           "spec": "AMD Ryzen 7 260 · RTX 5060 · 16GB · 1TB · Win11H",
           "store": "Canada Computers",
           "numpad": false,
-          "price": 1999,
+          "price": 1599,
           "currency": "CAD",
-          "last_checked": "2026-07-16",
+          "last_checked": "2026-07-28",
           "url": "https://www.canadacomputers.com/en/gaming-laptops/278827/lenovo-legion-5-15-3-amd-ryzen-7-260-geforce-rtx-5060-16gb-1tb-win11h-83m0004vcc.html",
           "history": [
             {
@@ -115,6 +123,10 @@
             {
               "date": "2026-07-16",
               "price": 1999
+            },
+            {
+              "date": "2026-07-28",
+              "price": 1599
             }
           ]
         },
