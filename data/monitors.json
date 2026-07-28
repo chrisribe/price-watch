@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-28T14:16:07",
+  "last_updated": "2026-07-28T14:19:56",
   "monitors": [
     {
       "id": "laptops",
@@ -13,14 +13,17 @@
           "numpad": true,
           "price": 2299,
           "currency": "CAD",
-          "last_checked": "2026-07-03",
+          "last_checked": "2026-07-28",
           "url": "https://www.newegg.ca/lenovo-legion-5i-15-1-geforce-rtx-5070-laptop-gpu-intel-core-i7-14700hx-wqxga-32gb-memory-1-tb-pcie-ssd/p/N82E16834840622",
           "history": [
             {
               "date": "2026-07-03",
               "price": 2299
             }
-          ]
+          ],
+          "in_stock": false,
+          "stock_note": "User-reported out of stock on Newegg",
+          "stock_source": "manual"
         },
         {
           "name": "Gigabyte A16 32GB",
